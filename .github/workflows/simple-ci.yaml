@@ -1,0 +1,25 @@
+name: "Very simple CI"
+
+on:
+  # This is only for demo purpose. In real world, you might want to more specify the events
+  push:
+  pull_request:
+
+jobs:
+  linter-test:
+    name: "Linter and Test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "linting and testing"
+        run: echo "Fake linting and testing"
+
+  gitleaks:
+    name: "Gitleaks test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "checkout the repo"
+        uses: actions/checkout@v3
+      - name: "run gitleaks"
+        run: |
+          docker pull zricethezav/gitleaks:latest
+          docker run -v .:/path zricethezav/gitleaks:latest detect --source="/path" --verbose
