@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 
 
 def token_for_my_silly_web(username: str, password: str) -> str:
@@ -18,6 +19,7 @@ def get_something_from_the_silly_web(token: str) -> str:
 
 
 if __name__ == "__main__":
+    load_dotenv()
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
     print(f"Getting important data from the silly web for {username=}")
